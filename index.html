@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GITAM Java OOP Master Notes</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --sidebar-bg: #ffffff;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --highlight: #fef08a;
+            --exam-tip: #dcfce7;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+        /* Top Navigation */
+        .top-nav { background-color: var(--primary); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 100; }
+        .top-nav h1 { font-size: 1.2rem; font-weight: 600; }
+        .chapter-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; padding: 8px 12px; border-radius: 4px; transition: background 0.3s; }
+        .chapter-links a:hover { background-color: var(--secondary); }
+
+        /* Layout */
+        .container { display: flex; flex: 1; overflow: hidden; }
+
+        /* Sidebar */
+        .sidebar { width: 280px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border); padding: 20px; overflow-y: auto; }
+        .sidebar h2 { font-size: 1rem; text-transform: uppercase; color: #64748b; margin-bottom: 10px; margin-top: 20px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { text-decoration: none; color: var(--text); font-size: 0.95rem; display: block; padding: 6px 10px; border-radius: 4px; transition: all 0.2s; }
+        .sidebar a:hover { background-color: #e2e8f0; color: var(--primary); }
+        
+        /* Main Content */
+        .content { flex: 1; padding: 40px; overflow-y: auto; scroll-behavior: smooth; }
+        
+        /* Typography & Elements */
+        h2.chapter-title { font-size: 2rem; color: var(--primary); margin-bottom: 20px; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
+        h3.topic-title { font-size: 1.5rem; color: var(--secondary); margin-top: 30px; margin-bottom: 15px; }
+        h4 { font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px; color: #334155; }
+        
+        .definition-box { background-color: #eff6ff; border-left: 4px solid var(--secondary); padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; font-weight: 500; }
+        .exam-tip { background-color: var(--exam-tip); border-left: 4px solid #22c55e; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; font-weight: 500; color: #166534; }
+        .exam-tip strong { display: block; margin-bottom: 5px; }
+
+        pre { background-color: var(--code-bg); color: var(--code-text); padding: 15px; border-radius: 8px; overflow-x: auto; margin: 15px 0; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        code { font-family: 'Consolas', monospace; background-color: #e2e8f0; color: #b91c1c; padding: 2px 5px; border-radius: 4px; font-size: 0.9rem; }
+        pre code { background-color: transparent; color: inherit; padding: 0; }
+
+        ul, ol { margin-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        th { background-color: var(--bg); color: var(--primary); }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <header class="top-nav">
+        <h1>📚 GITAM Java OOP Master Notes</h1>
+        <nav class="chapter-links">
+            <a href="#chapter3">Chapter 3</a>
+            <a href="#chapter4">Chapter 4</a>
+            <a href="#chapter5">Chapter 5</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Chapter 3</h2>
+            <ul>
+                <li><a href="#arrays">Arrays</a></li>
+                <li><a href="#strings">Strings & StringBuffer</a></li>
+                <li><a href="#inheritance">Inheritance Basics</a></li>
+                <li><a href="#access">Access Modifiers</a></li>
+                <li><a href="#constructors">Constructors & super</a></li>
+                <li><a href="#override">Method Overriding</a></li>
+                <li><a href="#abstract">Abstract & final</a></li>
+            </ul>
+
+            <h2>Chapter 4</h2>
+            <ul>
+                <li><a href="#interfaces">Interfaces Fundamentals</a></li>
+                <li><a href="#multi-interface">Multiple Inheritance</a></li>
+                <li><a href="#packages">Packages Fundamentals</a></li>
+                <li><a href="#imports">Import vs Static Import</a></li>
+            </ul>
+
+            <h2>Chapter 5</h2>
+            <ul>
+                <li><a href="#exception-hierarchy">Exception Hierarchy</a></li>
+                <li><a href="#checked-unchecked">Checked vs Unchecked</a></li>
+                <li><a href="#try-catch">Try-Catch-Finally</a></li>
+                <li><a href="#throw-throws">Throw, Throws & Custom</a></li>
+                <li><a href="#threads">Concurrency & Threads</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            
+            <!-- ================= CHAPTER 3 ================= -->
+            <h2 id="chapter3" class="chapter-title">Chapter 3: Arrays, Strings & Inheritance</h2>
+
+            <h3 id="arrays" class="topic-title">3.1 Arrays (Exam Ready)</h3>
+            <div class="definition-box">
+                An <strong>Array</strong> is a container object that holds a <strong>fixed number of values of a single type</strong>. The length of an array is established when the array is created. After creation, its size is fixed.
+            </div>
+            <h4>Array vs ArrayList (2-Mark PYQ)</h4>
+            <ul>
+                <li><strong>Size:</strong> Arrays are fixed; ArrayLists are dynamic (can grow/shrink).</li>
+                <li><strong>Data Types:</strong> Arrays can hold primitives and objects; ArrayLists can only hold objects.</li>
+            </ul>
+            <h4>Jagged/Irregular Arrays (8-Mark PYQ)</h4>
+            <p>A multidimensional array where each row can have a different number of columns.</p>
+            <pre><code>int[][] jaggedArr = new int[3][];
+jaggedArr[0] = new int[2];
+jaggedArr[1] = new int[4];
+jaggedArr[2] = new int[3];</code></pre>
+
+            <h3 id="strings" class="topic-title">3.2 Strings & StringBuffer</h3>
+            <h4>Creating Strings:</h4>
+            <ol>
+                <li><strong>By string literal:</strong> <code>String s = "welcome";</code> (Created using double quotes).</li>
+                <li><strong>By new keyword:</strong> <code>String s = new String("Welcome");</code> (Using the String class constructor).</li>
+            </ol>
+            
+            <h4>Important Methods (PDF Wording)</h4>
+            <ul>
+                <li><code>length()</code>: Returns the length of the string.</li>
+                <li><code>charAt(i)</code>: Returns the char at position i.</li>
+                <li><code>equals(t)</code>: Returns <strong>true</strong> if the two strings have equal values, otherwise false.</li>
+                <li><code>compareTo(t)</code>: Compares strings lexicographically. Returns a <strong>positive number</strong> (if s1 > s2), <strong>negative number</strong> (if s1 < s2), or <strong>0</strong> (if equal).</li>
+                <li><code>toString()</code>: Returns the <strong>String representation of the object</strong>. If you print any object, the compiler internally invokes this method.</li>
+            </ul>
+
+            <h4>String vs. StringBuffer</h4>
+            <ul>
+                <li><strong>String:</strong> Represents fixed-length, <strong>immutable</strong> character sequences.</li>
+                <li><strong>StringBuffer:</strong> Represents <strong>growable and writable</strong> (mutable) character sequences.</li>
+            </ul>
+            <div class="exam-tip">
+                <strong>Exam Tip: StringBuffer Capacity</strong><br>
+                By default, capacity is <strong>16</strong>. If the number of characters exceeds the current capacity, the new capacity is calculated as: <code>(oldcapacity * 2) + 2</code>.
+            </div>
+
+            <h3 id="inheritance" class="topic-title">3.3 Inheritance Basics</h3>
+            <div class="definition-box">
+                Inheritance is the <strong>mechanism of deriving the properties (methods, variables)</strong> of one class into another class. The keyword used is <strong>extends</strong>, which means to <strong>increase the functionality</strong>.
+            </div>
+            <ul>
+                <li><strong>Super Class:</strong> The class whose features are inherited (base or parent class).</li>
+                <li><strong>Sub Class:</strong> The class that inherits the other class (derived, extended, or child class).</li>
+            </ul>
+
+            <h4>Types of Inheritance</h4>
+            <ol>
+                <li><strong>Single:</strong> Subclasses inherit features of one superclass.</li>
+                <li><strong>Multilevel:</strong> A derived class inherits a base class, and acts as a base class to another class.</li>
+                <li><strong>Hierarchical:</strong> One class serves as a superclass for more than one subclass.</li>
+                <li><strong>Multiple:</strong> Java <strong>does not support</strong> multiple inheritance with classes (causes ambiguity in hybrid inheritance). Achieved only through <strong>Interfaces</strong> using the <strong>implements</strong> keyword.</li>
+                <li><strong>Hybrid:</strong> A combination of more than one type of inheritance.</li>
+            </ol>
+
+            <h3 id="access" class="topic-title">3.4 Access Modifiers</h3>
+            <table>
+                <tr><th>Access modifier</th><th>In class</th><th>In package</th><th>Outside package by subclass</th><th>Outside package</th></tr>
+                <tr><td>public</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+                <tr><td>protected</td><td>Yes</td><td>Yes</td><td>Yes</td><td>No</td></tr>
+                <tr><td>default</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td></tr>
+                <tr><td>private</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+            </table>
+
+            <h3 id="constructors" class="topic-title">3.5 Constructors & the super Keyword</h3>
+            <p><strong>Order of Execution:</strong> In inheritance, the constructor of the <strong>base class is executed first</strong>, then the child class constructor.</p>
+            <p><strong>3 Usages of <code>super</code>:</strong></p>
+            <ol>
+                <li>Refer immediate parent class <strong>instance variable</strong>.</li>
+                <li>Invoke immediate parent class <strong>method</strong>.</li>
+                <li>Invoke immediate parent class <strong>constructor</strong> (<code>super()</code>).</li>
+            </ol>
+
+            <h3 id="override" class="topic-title">3.6 Method Overriding</h3>
+            <div class="definition-box">
+                If a subclass provides the <strong>specific implementation</strong> of the method that has been declared by one of its parent classes, it is known as method overriding.
+            </div>
+            <p><strong>Rules:</strong></p>
+            <ol>
+                <li>The method must have the <strong>same name</strong>.</li>
+                <li>The method must have the <strong>same parameters</strong>.</li>
+                <li>There must be an <strong>IS-A relationship</strong> (inheritance).</li>
+            </ol>
+
+            <h3 id="abstract" class="topic-title">3.7 Abstract Classes & final</h3>
+            <ul>
+                <li><strong>Abstract Class:</strong> Declared with the <code>abstract</code> keyword. It can have abstract and non-abstract methods. <strong>It cannot be instantiated</strong> (cannot create an object).</li>
+                <li><strong>final Variable:</strong> Acts as a constant (value cannot be changed).</li>
+                <li><strong>final Method:</strong> Prevents Method Overriding.</li>
+                <li><strong>final Class:</strong> Prevents inheritance further (cannot be extended).</li>
+            </ul>
+
+            <br><hr><br>
+
+            <!-- ================= CHAPTER 4 ================= -->
+            <h2 id="chapter4" class="chapter-title">Chapter 4: Interfaces & Packages</h2>
+
+            <h3 id="interfaces" class="topic-title">4.1 Interfaces Fundamentals</h3>
+            <div class="definition-box">
+                An Interface in Java is a <strong>blueprint of a class</strong>.
+            </div>
+            <ul>
+                <li>Methods are <strong>abstract</strong> by default (declared but not defined).</li>
+                <li>Data members are <strong>public, static, and final</strong>. They must be initialized with a constant value.</li>
+                <li>An interface acts like an abstract class; you cannot instantiate it.</li>
+            </ul>
+            <p><strong>Why do we need Interfaces?</strong> In C++, multiple inheritance causes ambiguity (hybrid inheritance issue). Java does not support multiple inheritance with classes. Instead, it is suggested to use interfaces.</p>
+            <p><strong>Extends vs Implements (Valid/Invalid):</strong></p>
+            <ul>
+                <li>Class extends Class (Valid)</li>
+                <li>Class implements Interface (Valid)</li>
+                <li>Interface extends Interface (Valid)</li>
+                <li>Interface implements Class (<strong>IN-VALID</strong>)</li>
+            </ul>
+
+            <h3 id="multi-interface" class="topic-title">4.2 Multiple & Nested Interfaces</h3>
+            <p><strong>Multiple Interfaces:</strong> A single derived class acquires the properties from multiple base interfaces.</p>
+            <pre><code>class ClassName implements Interface1, Interface2 { ... }</code></pre>
+            <p><strong>Extending Interfaces:</strong> One interface inherits the abstract methods of another interface.</p>
+            <pre><code>interface Interface2 extends Interface1 { ... }</code></pre>
+            <p><strong>Nested Interfaces:</strong> Defining an interface inside another interface.</p>
+            <pre><code>class ClassName implements OuterInterface.NestedInterface { ... }</code></pre>
+
+            <h3 id="packages" class="topic-title">4.3 Packages Fundamentals</h3>
+            <div class="definition-box">
+                Packages are a way of <strong>grouping related classes, interfaces, and subpackages</strong> together to organize code, prevent naming conflicts, and manage access control.
+            </div>
+            <p><strong>Advantages (6 Points):</strong> Uniquely Compare Classes, Easy Search, Reuse Classes, Avoid Naming Conflicts, Provide Controlled Access, Implement Data Encapsulation.</p>
+            <p><strong>Types:</strong> Built-in packages (java.lang, java.util, java.io) vs. User-defined packages.</p>
+            <p><strong>Compilation & Execution:</strong></p>
+            <pre><code>javac -d . Simple.java
+java mypack.Simple</code></pre>
+
+            <h3 id="imports" class="topic-title">4.4 Import vs Static Import</h3>
+            <ul>
+                <li><strong>Standard Import:</strong> <code>import pack.*;</code> imports all classes, but <strong>not subpackages</strong>.</li>
+                <li><strong>Static Import (1.5+):</strong> Access the static members of a class directly without the class name. Example: <code>Math.sqrt()</code> becomes <code>sqrt()</code>.</li>
+            </ul>
+            <div class="exam-tip">
+                <strong>Exam Tip: Static Import Disadvantage</strong><br>
+                Static import makes the program <strong>unreadable and unmaintainable</strong> if reused heavily in large codebases.
+            </div>
+
+            <br><hr><br>
+
+            <!-- ================= CHAPTER 5 ================= -->
+            <h2 id="chapter5" class="chapter-title">Chapter 5: Exception Handling & Concurrency</h2>
+
+            <h3 id="exception-hierarchy" class="topic-title">5.1 Exception Hierarchy</h3>
+            <ul>
+                <li>All exceptions must be a child of <strong>Throwable</strong>.</li>
+                <li><strong>Error:</strong> Thrown by JVM, represents internal system errors (e.g., OutOfMemoryError). These errors rarely occur and cannot be handled.</li>
+                <li><strong>Exception:</strong> Describes errors caused by your program and external circumstances. These errors <strong>can be caught and handled</strong>.</li>
+            </ul>
+
+            <h3 id="checked-unchecked" class="topic-title">5.2 Checked vs Unchecked Exceptions</h3>
+            <ul>
+                <li><strong>Unchecked Exceptions:</strong> <code>RuntimeException</code>, <code>Error</code> and their subclasses (e.g., ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException).</li>
+                <li><strong>Checked Exceptions:</strong> All other exceptions. The <strong>compiler forces</strong> the programmer to check and deal with these exceptions (e.g., IOException, ClassNotFoundException).</li>
+            </ul>
+
+            <h3 id="try-catch" class="topic-title">5.3 Try-Catch-Finally</h3>
+            <ul>
+                <li><strong>try:</strong> Contains statements that may cause exceptions.</li>
+                <li><strong>catch:</strong> Contains statements that handle the exception.</li>
+                <li><strong>finally:</strong> Contains statements that <strong>always execute</strong> on exit of the exception handling (used for cleanup).</li>
+            </ul>
+            <pre><code>try {
+    // code that may throw exception
+} catch (ArithmeticException e) {
+    // handle exception
+} finally {
+    // always executes
+}</code></pre>
+
+            <h3 id="throw-throws" class="topic-title">5.4 Throw, Throws & Custom Exceptions</h3>
+            <ul>
+                <li><code>throw</code>: Used to explicitly throw an exception object from a method or block.</li>
+                <li><code>throws</code>: Used in the method signature to declare that a method might throw an exception.</li>
+                <li><strong>Rethrowing:</strong> Throwing an exception from a catch block to pass it up the call stack (<code>throw e;</code>).</li>
+            </ul>
+            <p><strong>Custom Exceptions:</strong> To write a checked exception, extend <code>Exception</code>. To write a runtime exception, extend <code>RuntimeException</code>.</p>
+            <pre><code>class MyException extends Exception {
+    public MyException(String s) {
+        super(s);
+    }
+}</code></pre>
+
+            <h3 id="threads" class="topic-title">5.5 Concurrency & Threads</h3>
+            <p><strong>Multiple Threads:</strong> A thread is a lightweight sub-process that shares memory space.</p>
+            <p><strong>Creation:</strong> By extending the <code>Thread</code> class or implementing the <code>Runnable</code> interface.</p>
+            <p><strong>Life Cycle States:</strong> New, Runnable, Running, Blocked/Waiting, Terminated. (Memorize this for 8-mark questions).</p>
+
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
